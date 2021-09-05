@@ -3,5 +3,5 @@ Các bạn nhớ nộp những gì mình làm được trên đây, ở các fol
 
 # Task1: Requirement elicitation
 - Task 1.1 : [Link Google Docs](https://docs.google.com/document/d/1RZdt7wHYfFHKULcez_N8EJsgdiUWPozyHjkraqPTRdI/edit?fbclid=IwAR36sfF35P0JGfqIyGxjO3xV1yxb9fnErQzwM-ZYA6isChyWGzkk-YULAuE)
-- Task 1.2 :
+- Task 1.2 : [Use-case diagram](/Requirement%20elicitation/task%201.2/use%20case%20system.png)
 - Task 1.3 :
