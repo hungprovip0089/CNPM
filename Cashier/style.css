@@ -3,7 +3,9 @@
   padding: 0;
   list-style: none;
 }
-
+h1{
+  font-weight: bold;
+}
 header{
   width: 100%;
   height: 100px;
@@ -110,8 +112,10 @@ header nav .button:hover{
 .pprice { color: #639aff; } */
 
 #bill{
-  background-color: rgb(247, 245, 242);
+  /* background-color: rgb(247, 245, 242); */
   padding: 20px;
+  /* display: block; */
+  height: unset;
 }
 
 
@@ -129,7 +133,7 @@ header nav .button:hover{
   box-sizing: border-box; 
   
 }
-.citem, .cname { width: 100%; }
+.citem  { width: 100%; }
 .citem { 
   padding: 10px; 
   border: solid 3px rgba(16, 16, 16, 0.1);
@@ -139,7 +143,7 @@ header nav .button:hover{
   background-color: khaki;
 
 }
-.cname{ display: block; }
+/* .cname{ display: block; } */
 .cdel { width: 25%; }
 .cqty { width: 75%; }
 
