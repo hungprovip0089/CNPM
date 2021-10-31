@@ -1,7 +1,5 @@
-Bài tập lớn CNPM.\
-Các bạn nhớ nộp những gì mình làm được trên đây, ở các folder của từng task. Đồng thời nhớ ghi log lại.
+# POS system
+POS system for Assignment of Software Engineering class
 
-# Task1: Requirement elicitation
-- Task 1.1 : [Link Google Docs](https://docs.google.com/document/d/1RZdt7wHYfFHKULcez_N8EJsgdiUWPozyHjkraqPTRdI/edit?fbclid=IwAR36sfF35P0JGfqIyGxjO3xV1yxb9fnErQzwM-ZYA6isChyWGzkk-YULAuE)
-- Task 1.2 : [Use-case diagram](/Requirement%20elicitation/task%201.2/use%20case%20system.png)
-- Task 1.3 :
+Figma: https://www.figma.com/file/NVNqgbbpfwQHBcd6ai9ysd/Untitled?node-id=0%3A1
+Trello: https://trello.com/b/WLR01H8g/ph%C3%A2n-t%C3%ADch-requirements
