@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/styles.css">
+	<title>Chef Interface</title>
+</head>
+<body>
+	<div class="side-menu">
+		<div class="logo">
+			<h1>MU Restuarant</h1>
+		</div>
+		<ul>
+			<li>List of Orders</li>
+			<li>Update Menu</li>
+		</ul>
+		 
+	</div>
+	<div class="container">
+		<div class="header">
+			<div class="nav">
+				<div class="search">
+					<h2>Xin chào bếp trưởng, Bùi C</h2>
+				</div>
+				<div class="user">
+					<a href="#" class="btn">Log Out</a>
+				</div>	
+			</div>
+		</div>
+		<div class="content">
+			<div class="cards">
+				<div class="card">
+					<div class="box">
+						<h1>Chef UI</h1>
+						<h3>.</h3>
+					</div>
+				</div>
+			</div>
+			<div class="content-2">
+				<div class="recent-orders">
+					<div class="title">
+						<h2>Đơn hàng đang thực hiện</h2>
+						<a href="#" class="btn">View All</a>
+					</div>
+					<table>
+						<tr>
+							<th>Mã đơn</th>
+							<th>Món</th>
+						</tr>
+						<%ConfirmedList.forEach(Order => {%>
+						<tr>
+							<td><%= Order.order_id %></td>
+							<td><%= Order.items %></td>
+							<td><a href="#" class="btn">Gửi Đơn</a></td>
+						</tr>
+						<%})%>
+
+					</table>
+				</div>
+				<div class="new-orders">
+					<div class="title">
+						<h2>Chờ xác nhận</h2>
+						<a href="#" class="btn">View All</a>
+					</div>
+					<table>
+						<tr>
+							<th>Mã đơn </th>
+							<th>Món </th>
+							
+						</tr>
+						<%WaitingList.forEach(Order => {%>
+						<tr>
+							<td><%= Order.order_id %></td>
+							<td><%= Order.items %></td>
+							<td><a href="#" class="btn">Từ chối</a></td>
+							<td><a href="#" class="btn">Xác nhận</a></td>
+						</tr>
+						<%})%>
+						
+					</table>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
