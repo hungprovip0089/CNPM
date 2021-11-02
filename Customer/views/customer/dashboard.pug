@@ -1,0 +1,156 @@
+head 
+    link(rel="stylesheet", href="../../static/css/customer/dashboard.css")
+body
+
+    .header 
+        a(href="/")
+            img.logo(src="/static/images/logo.png",width="100px")  
+        a(href='/')
+            p Back to home
+    
+    .filter
+        ul 
+            li
+                a(href="/customer")
+                    button All 
+            li
+                form(action="/customer/search",method="GET")
+                    input(type="text",value="Chicken", name="filter")
+                    button(tabindex="1")
+                        img(src="/static/images/birthday.png",width="80%")
+                        p Chicken
+            li 
+                form(action="/customer/search",method="GET")
+                    input(type="text",value="Beef", name="filter")
+                    button(tabindex="1")
+                        img(src="/static/images/meat.png",width="80%")
+                        p Beef 
+    h3.nameType #{type}
+    .container       
+        section.products
+            .col 
+                each food in foods
+                    .col-5
+                        .product-card(product_id=food.id)
+                            .product-image
+                                img(src=food.image)
+                            .product-info
+                                .h5 #{food.name}
+                                .h6 #{food.price}
+                            button.addToCart Add
+
+        section.cart 
+            h3 Your cart
+            ul.cart-list 
+
+
+<!-- Cart of item -->
+    //- .hcart-container.animate
+    //-     .hcart-header
+    //-         ul 
+    //-             li
+    //-             li
+    //-             li Sản phẩm
+    //-             li Giá
+    //-             li Số lượng
+    //-             li Tổng
+    //-     .hcart-content
+    //-             .hproduct-card
+    //-                 ul 
+    //-                     li 
+    //-                         span.x-item &times 
+    //-                     li 
+    //-                         .hproduct-image 
+    //-                             img(src="/static/images/blackCoffee.jpg")
+    //-                     li  
+    //-                         .hproduct-name Hello 
+    //-                     li  $99.99
+    //-                     li  1
+    //-                     li  $99.99
+    //-             .hproduct-card
+    //-                 ul 
+    //-                     li 
+    //-                         span.x-item &times 
+    //-                     li 
+    //-                         .hproduct-image 
+    //-                             img(src="/static/images/blackCoffee.jpg")
+    //-                     li  
+    //-                         .hproduct-name Hello 
+    //-                     li  $99.99
+    //-                     li  1
+    //-                     li  $99.99
+    //-             .hproduct-card
+    //-                 ul 
+    //-                     li 
+    //-                         span.x-item &times 
+    //-                     li 
+    //-                         .hproduct-image 
+    //-                             img(src="/static/images/blackCoffee.jpg")
+    //-                     li  
+    //-                         .hproduct-name Hello 
+    //-                     li  $99.99
+    //-                     li  1
+    //-                     li  $99.99
+    //-             .hproduct-card
+    //-                 ul 
+    //-                     li 
+    //-                         span.x-item &times 
+    //-                     li 
+    //-                         .hproduct-image 
+    //-                             img(src="/static/images/blackCoffee.jpg")
+    //-                     li  
+    //-                         .hproduct-name Hello 
+    //-                     li  $99.99
+    //-                     li  1
+    //-                     li  $99.99
+    //-             .hproduct-card
+    //-                 ul 
+    //-                     li 
+    //-                         span.x-item &times 
+    //-                     li 
+    //-                         .hproduct-image 
+    //-                             img(src="/static/images/blackCoffee.jpg")
+    //-                     li  
+    //-                         .hproduct-name Hello 
+    //-                     li  $99.99
+    //-                     li  1
+    //-                     li  $99.99
+    //-             .hproduct-card
+    //-                 ul 
+    //-                     li 
+    //-                         span.x-item &times 
+    //-                     li 
+    //-                         .hproduct-image 
+    //-                             img(src="/static/images/blackCoffee.jpg")
+    //-                     li  
+    //-                         .hproduct-name Hello 
+    //-                     li  $99.99
+    //-                     li  1
+    //-                     li  $99.99
+    //-             .hproduct-card
+    //-                 ul 
+    //-                     li 
+    //-                         span.x-item &times 
+    //-                     li 
+    //-                         .hproduct-image 
+    //-                             img(src="/static/images/blackCoffee.jpg")
+    //-                     li  
+    //-                         .hproduct-name Hello 
+    //-                     li  $99.99
+    //-                     li  1
+    //-                     li  $99.99
+            
+
+    //-     .hcard-footer
+    //-         span Tổng tiền #99999                   
+                            
+
+    //-     button.order-btn Order
+
+
+
+
+
+
+    script(src="../../static/scripts/jquery.min.js") 
+    script(src="../../static/scripts/customer/menu.js") 

@@ -1,0 +1,43 @@
+html
+    head
+        title Coffee Junkie
+        meta(charset='utf-8')
+        link(rel="stylesheet", href="/static/css/style.css")
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        link(href='https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap' rel='stylesheet')
+            
+    body
+
+        #flex-container-navbar
+            a(href='/')
+                span#branch-name Junkie store
+            div.navbar-search
+                form.search-action(action='')
+                    input.search-box(type='text' name='search-item' placeholder='Search by products')
+                    input.search-button(type='button' value='Search')                 
+            div.login
+                div#login-icon-text
+                    img#login-icon(src='/static/images/login.png')
+                    p log in 
+
+        #login-form.modal.animate   
+            .close-btn
+                span &times 
+            form(action="/", method="POST").modal-content
+                .img-container
+                    img.img-avatar(src="/static/images/img_avatar.png")
+                .container
+                    label(for="username") Username 
+                    input(type="text", name="username", placeholder="username" required)
+                    label(for="pwd") Password
+                    input(type="password", name="pwd", placeholder="password" required)
+                    button Login
+                    label Remember me
+                    input(type="checkbox", name="remember" checked="checked") 
+                .container 
+                    button.cancel-btn Cancel
+                    span.psw Forgot 
+                        a(href="#") password? 
+
+        script(src="/static/scripts/jquery.min.js") 
+        script(src="/static/scripts/index.js") 

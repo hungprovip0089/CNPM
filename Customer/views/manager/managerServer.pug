@@ -1,0 +1,62 @@
+html
+    head
+        title Coffee Junkie
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    body        
+        form.create-form(action='/manager/manageServer/createServer' method="POST")
+            .container
+                img.close-button(src="/static/images/close-button.png")
+                h1 Form thêm nhân viên
+                p Xin hãy nhập mẫu
+                hr
+                label(for='id')
+                b ID
+                input(type='text' placeholder='ID' name='id')
+                label(for='name')
+                b Họ và tên
+                input(type='text' placeholder='Họ và tên' name='name')
+                label(for='Type')
+                .type
+                    b Loại nhân viên 
+                    select(name="type")
+                        option(value="PV")  Phục vụ
+                        option(value="BT")  Bếp trưởng
+                br
+                label(for='username')
+                b Tên đăng nhập
+                input(type='text' name='username' placeholder='Tên đăng nhập')
+                label(for='pwd')
+                b Mật khẩu
+                input(type='text' name='pwd' placeholder='Mật khẩu')
+        
+            .clearfix
+                button.signupbtn(type='submit') Tạo
+
+        .container-main
+            center
+                h1 Quản lý nhân viên
+
+                .action-selection
+                    button#createEmployee Create server
+
+                table.table.table-hover
+                    thead
+                        tr
+                            th ID 
+                            th Họ và tên
+                            th Loại
+                            th username
+                            th password 
+                    tbody
+                        each server in servers 
+                            tr
+                                td #{server.id} 
+                                td #{server.name}
+                                td #{server.type}
+                                td #{server.username} 
+                                td #{server.pwd} 
+
+        link(rel="stylesheet", href="/static/css/manager/createEmployeeForm.css")
+        script(src="/static/scripts/jquery.min.js" type="module") 
+        script(src="/static/scripts/manager/createEmployee.js" type="module") 

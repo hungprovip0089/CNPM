@@ -1,0 +1,70 @@
+html
+    head
+        title Coffee Junkie
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        
+        link(href='https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap' rel='stylesheet')
+    body
+        #form-toggle
+            form(action='/managers/manageEmployee' method="POST")
+                .container
+                    img.close-button(src="/static/images/close-button.png")
+                    h1 Form thêm nhân viên
+                    p Xin hãy nhập mẫu
+                    hr
+                    label(for='id')
+                    b ID
+                    input(type='text' placeholder='ID' name='id')
+                    label(for='name')
+                    b Họ và tên
+                    input(type='text' placeholder='Họ và tên' name='name')
+                    label(for='Type')
+                    .type
+                        b Loại nhân viên 
+                        select(name="type")
+                            option(value="PV")  Phục vụ
+                            option(value="BT")  Bếp trưởng
+                    br
+                    label(for='username')
+                    b Tên đăng nhập
+                    input(type='text' name='username' placeholder='Tên đăng nhập')
+                    label(for='pwd')
+                    b Mật khẩu
+                    input(type='text' name='pwd' placeholder='Mật khẩu')
+            
+                .clearfix
+                    button.signupbtn(type='submit') Tạo
+
+        .container-main
+            center
+                h1 Quản lý nhân viên
+
+                .action-selection
+                    button#createEmployee Create employee
+
+                table.table.table-hover
+                    thead
+                        tr
+                            th ID 
+                            th Họ và tên
+                            th Loại
+                            th username
+                            th password 
+                    tbody
+                        each employee in employees 
+                            tr
+                                td #{employee.id} 
+                                td #{employee.name}
+                                td #{employee.type}
+                                td #{employee.username} 
+                                td #{employee.pwd} 
+
+        link(rel="stylesheet", href="/static/css/managers/createEmployeeForm.css")
+        
+
+        
+
+
+        script(src="/static/script/jquery.min.js" type="module") 
+        script(src="/static/script/touchme.js" type="module") 
