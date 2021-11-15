@@ -25,6 +25,35 @@ body{
     font-weight: 700;
 }
 
+.button-area{
+    width: 75%;
+    text-align: right;
+}
+
+.call-service-btn, .payment-btn{
+    width: 30%;
+    height: 30px;
+    margin: 0 30px 0 30px;
+    font-family: cursive;
+    font-weight: 800;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.button-area button:hover{
+    opacity: 0.5;
+    background-color: gray;
+}
+
+.call-service-btn{
+    background-color: #145DA0;
+    color: white;
+}
+
+.payment-btn{
+    background-color:antiquewhite;
+}
+
 .filter{
     width: 70%;
     height: 90px;
@@ -90,6 +119,12 @@ h3{
 
 .product-card{
     text-align: center;
+    cursor: pointer;    
+}
+
+.product-card:hover{
+    cursor: pointer;
+    opacity: 0.5;
 }
 
 .product-info {
@@ -97,17 +132,35 @@ h3{
     text-align: center;
 }
 
-.product-info h5{
-    margin: 20px;
+.product-info .h5{
+    margin: 0px;
     font-size: 18px;
     color: black;
+    height: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-.product-info h6{
-    margin: 20px;
+.product-info .h6:nth-child(2){
+    margin-left: 10px;
     font-size: 18px;
     color: black;
+    text-align: left;
+    color: rgba(252, 31, 31, 0.911);
 }
+
+.product-info .h6:nth-child(2) span{
+    margin-right: 5px;
+    float: right;
+}
+
+.product-info img{
+    width: 15px;
+}
+
+.product-info .h6:nth-child(3), .product-info .h6:nth-child(4){
+    display: none;
+}
+
 
 .product-image img {
     width: 100%;
@@ -119,9 +172,15 @@ h3{
     width: 60%;
     height: 30px;
     border-radius: 5px;
-    border: 1px solid gray;
-    background-color: rgb(255, 72, 0);
+    border: 0;
+    background-color: #145DA0;
     margin-bottom: 5px;
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+.addToCart:hover{
+    opacity: 0.7;
 }
 
 .row::after {
@@ -139,12 +198,13 @@ h3{
     border: 3px solid gray;
     border-radius: 10px;
     height: 100%;
-    overflow: scroll;
 }
 
 .cart ul{
     list-style: none;
     display: inline-block;
+    height: 70%;
+    overflow: auto;
 }
 
 .cart ul li{
@@ -183,6 +243,197 @@ h3{
     border-radius: 5px;
     border: 1px solid gray;
 }
+
+.cart-list li button:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.item_minus_button{
+    border: 1px solid blue;
+    border-radius: 5px;
+    background-color: white;
+    color: blue;
+}
+
+.item_plus_button{
+    border: 1px solid red;
+    border-radius: 5px;
+    background-color: white;
+    color: red;
+}
+
+.total-box{
+    font-family: cursive;
+}
+
+#total-label{
+    font-size: 20px;
+}
+
+#total-value{
+    float: right;
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+.total-box div:nth-child(2){
+    float: right;
+    margin-right: 20px;
+}
+
+#send-order-btn{
+    position: relative;
+    top: 40px;
+    left:50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 40px;
+    border: 0px ;
+    background-color: rgb(245, 15, 7);
+    border-radius: 10px;
+    color:white;
+    font-size: 20px;
+    font-family: cursive;
+    cursor: pointer;
+}
+
+#send-order-btn:hover{
+    opacity: 0.7;
+}
+
+/* DETAIL BOX */
+.detail-box{
+    position: fixed;
+    left: 50%;
+    top: 10%;
+    transform:translateX(-50%);
+    width: 70%;
+    border: 2px solid gold;
+    border-radius: 5px;
+    font-family: cursive;
+    display: none;
+}
+
+.detail-box h3{
+    width: 100%;
+    background-color: antiquewhite;
+    margin: 0;
+}
+
+.detail-box h3 span{
+    float: right;
+    margin-right: 2%;
+    cursor: pointer;
+}
+
+.detail-info{
+    display: flex;
+    background-color: white;
+}
+
+.detail-image{
+    width: 20%;
+    text-align: center;
+    margin-top: 2%;
+}
+
+.detail-image img{
+    width: 70%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 10px;
+}
+
+.detail-text{
+    width: 70%;
+    margin-left: 5%;
+}
+
+.detail-text div:nth-child(1){
+    margin-top: 2%;
+    font-size: large;
+    border-bottom: 1px solid gray;
+}
+
+.detail-text div:nth-child(1) span:nth-child(2){
+    float: right;
+}
+
+.detail-text div:nth-child(2) span:nth-child(2){
+    float: right;
+}
+
+.detail-text div:nth-child(2){
+    color: red;
+    font-weight: 700;
+    border-bottom: 1px solid gray;
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+
+.detail-text div:nth-child(3){
+    font-weight: 800;
+    font-size: large;
+    margin-top: 2%;
+    margin-bottom: 4%;
+}
+
+.detail-text div:nth-child(3) > span:nth-child(2){
+    float: right;
+    width: 20%;
+    text-align: center;
+}
+
+.detail-text div:nth-child(3) > span:nth-child(2) button{
+    font-size: 16px;
+    width: 20%;
+    text-align: justify;
+    margin: 0;
+}
+
+.detail-text div:nth-child(3) > span:nth-child(2) button:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.detail-text div:nth-child(3) > span:nth-child(2) button:nth-child(1){
+    border: 1px solid blue;
+    border-radius: 5px;
+    background-color: white;
+    color: blue;
+}
+
+.detail-text div:nth-child(3) > span:nth-child(2) button:nth-child(3){
+    border: 1px solid red;
+    border-radius: 5px;
+    background-color: white;
+    color: red;
+}
+
+.quantity{
+    margin: 0 5% 0 5%;
+}
+
+.detail-text div:nth-child(4),.detail-text div:nth-child(7){
+    font-size: large;
+    font-weight: 800;
+}
+
+.detail-text .addToCart{
+    margin-top: 3%;
+    margin-left: 25%;
+    font-family: cursive;
+    font-size: 20px;
+}
+
+
+
+
+
+
+
+
 
 /* cart of item */
 /* .hcart-container{
@@ -284,19 +535,19 @@ h3{
 
 .order-btn:hover{
     opacity: 0.7;
-}
+} */
 
-.animate {
+/* .animate {
     -webkit-animation: animatezoom 0.6s;
     animation: animatezoom 0.6s
-  }
+  } */
   
-  @-webkit-keyframes animatezoom {
+  /* @-webkit-keyframes animatezoom {
     from {-webkit-transform: scale(0)}
     to {-webkit-transform: scale(1)}
   }
   
   @keyframes animatezoom {
     from {transform: scale(0)}
-    to {transform: scale(1)}
-  } */ 
+    to {transform: scale(1)} 
+} */

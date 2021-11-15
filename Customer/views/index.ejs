@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>RESTAURANT</title>
+        <link href="/css/style.css", rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap' rel='stylesheet'>
+        <script src="/scripts/jquery.min.js"></script>
+        <script src="/scripts/index.js"></script>
+    </head>
+    <body>
+        <div id="flex-container-navbar">
+            <a href='/'>
+                <span id="branch-name">SE Restaurant</span>
+            </a>
+            <div class="navbar-search">
+                <form class="search-action" action="">
+                    <input class="search-box" type='text' name='search-item' placeholder='Search by products'>
+                    <input class="search-button" type='button' value='Search'>
+                </form>
+            </div>
+            <div class="login">
+                <div id="login-icon-text">
+                    <img id="login-icon" src='/images/login.png'>
+                    <p>Login</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="login-form" class="modal animate">
+            <div class="close-btn">
+                <span>&times;</span>
+            </div>
+            <form class="modal-content" action="/" method="POST">
+                <div class="img-container">
+                    <img class="img-avatar" src="/images/img_avatar.png">
+                </div>
+                <div class="container">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" placeholder="username" required>
+                    <label for="pwd">Password</label> 
+                    <input type="password" name="pwd" placeholder="password" required)>
+                    <button>Login</button> 
+                    <label>Remember me</label> 
+                    <input type="checkbox" name="remember" checked="checked"> 
+                </div>
+                <div class="container">
+                    <button class="cancel-btn">Cancel</button>
+                    <span class="psw">
+                        Forgot
+                        <a href="#">Password?</a>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+    </body>
+</html>

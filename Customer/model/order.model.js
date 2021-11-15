@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var orderSchema = new mongoose.Schema({
     id : String,
     tableId: String,
+    receiptId: String,
     cart: [],
     status: Boolean,
     total: Number

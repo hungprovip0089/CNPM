@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>RESTAURANT</title>
+        <link href="/css/customer/dashboard.css", rel="stylesheet">
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <script src="/scripts/jquery.min.js"></script>
+        <script src="/scripts/customer/menu.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <a href='/'>
+                <img class="logo" src="/images/logo.png" width="100px">
+            </a>
+            <a href='/'>
+                <p>Back to home</p>
+            </a>
+            <div class="button-area">
+                <button class="call-service-btn">CALL SERVICE</button>
+                <button class="payment-btn">PAY</button>
+            </div>
+        </div>
+
+        <div class="filter">
+            <ul>
+                <li>
+                    <a href="/customer/<%= tableId %>">
+                        <button>All</button>
+                    </a>
+                </li>
+                <li>
+                    <form action="/customer/<%= tableId %>/search" method="GET">
+                        <input type="text" value="Chicken" name="filter">
+                        <button tabindex="1">
+                            <img src="/images/chicken.png" width="80%">
+                            <p>Chicken</p>
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="/customer/<%= tableId %>/search" method="GET">
+                        <input type="text" value="Beef" name="filter">
+                        <button tabindex="1">
+                            <img src="/images/meat.png" width="80%">
+                            <p>Beef</p>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <h3 class="nameType"> <%= type %> </h3>
+
+        <div class="container">
+            <section class="products">
+                <div class="col">
+                    <% foods.forEach(function(food) { %>
+                        <div class="col-5">
+                            <div class="product-card" product_id=<%= food.id %>> 
+                                <div class="product-image">
+                                    <img src=<%= food.image %>>
+                                </div>
+                                <div class="product-info">
+                                    <div class="h5"> <%= food.name %> </div>
+                                    <div class="h6"> <%= food.price %> 
+                                        <span>
+                                            <img src="/images/shopping-cart.png">
+                                        </span>
+                                    </div>
+                                    <div class="h6"> <%= food.description %> </div>
+                                    <div class="h6"> <%= food.type %> </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </section>
+
+            <section class="cart">
+                <h3>Your cart</h3>
+                <ul class="cart-list"> </ul>
+                <div class="total-box">
+                    <div>
+                        <span id="total-label">Total</span>
+                        <span id="total-value">0</span>
+                    </div>
+                    <div>
+                        <span id="tax-startlabel">(tax 10% -</span>
+                        <span id="tax-value">0</span>
+                        <span id="tax-startlabel">)</span>
+                    </div>
+                    <button id="send-order-btn">SEND ORDER</button>
+                </div>
+            </section>
+        </div>
+
+        <div class="detail-box">
+            <h3>ADD TO CART
+                <span class="cancel"> &times; </span>
+            </h3>
+            <div class="detail-info" product_id="FOOD01">
+                <div class="detail-image">
+                    <img width="100px">
+                </div>
+                <div class="detail-text">
+                    <div>
+                        <span>Name</span>
+                        <span>Unit Price</span>
+                    </div>
+                    <div>
+                        <span class="name">Hamburger</span>
+                        <span class="price">120000</span>
+                    </div>
+                    <div>
+                        <span>Quanlity</span>
+                        <span>
+                            <button class="minus">&minus;</button>
+                            <span class="quantity">1</span>
+                            <button class="plus">&plus;</button>
+                        </span>
+                    </div>
+                    <div>Description</div>
+                    <div class="description">Hello</div>
+                    <br>
+                    <div>Type</div>
+                    <div class="type">Chicken</div>
+                    <button class="addToCart">ADD</button>
+                </div>
+            </div>
+        </div>
+
+    </body>
+    
+
+</html>

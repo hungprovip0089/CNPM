@@ -1,13 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var controller = require('../controllers/customer.controller.js');
-// var middleware = require('../middlewares/auth.middleware.js')
 
-router.get('/', controller.showMenu);
+router.get('/:tableId' , controller.showMenu);
 
-router.get('/search', controller.filter)
+router.post('/:tableId' ,  controller.sendOrder);
 
-// router.post('/addOrderElement', controller.addOrderElement);
+router.post('/:tableId/service', controller.callService);
+
+router.post('/:tableId/payment', controller.makePayment);
+
+router.get('/:tableId/search', controller.filter);
 
 module.exports = router;
 
