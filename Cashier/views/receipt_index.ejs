@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    *{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+h1{
+  font-weight: bold;
+}
+header{
+  width: 100%;
+  height: 100px;
+  border-bottom: solid 1px rgba(16, 16, 16, 0.1);
+  font-family: 'Poppins';
+  /* background-color: wheat; */
+}
+
+header .inner{
+  width: 80%; /* This is the inner width of the content inside of your header (80%, etc) */
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+header .logo{
+  display: table;
+  height: 100%;
+  float: left;
+}
+
+header .logo div{
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+header .logo img{
+  height: 50px;
+  margin-top: 5px; /* Optical alignment of the logo */
+}
+
+header nav{
+  float: right;
+  height: 100%;
+}
+
+header nav li{
+  display: table;
+  height: 100%;
+  float: left;
+  margin-right: 30px;
+}
+
+header nav li:last-of-type{
+  margin-right: 0;
+}
+
+header nav span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+header nav a{
+  color: #101010;
+  text-decoration: none;
+}
+
+header nav .button{
+  background-color: #1ab26b; /* This HEX is the color of the button */
+  color: #FFF;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+header nav .button:hover{
+  filter: brightness(1.05);
+}
+
+
+
+/* (A) WRAPPER */
+.content {
+  font-family: arial, sans-serif;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  /* display: flex; */
+  /* justify-content: center; */
+  max-width: 1000px;
+  margin: 0 auto;
+  /* width: 1300px; */
+}
+
+
+#poslist { width: 100%; }
+#poscart { width: 100%; }
+
+/* (B) PRODUCTS LIST */
+/* #poslist {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+.pwrap {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background: #fbfbfb;
+  cursor: pointer;
+  text-align: center;
+}
+
+.pimg { max-width: 100px; }
+.pname { font-weight: 700; }
+.pprice { color: #639aff; } */
+
+#bill{
+  /* background-color: rgb(247, 245, 242); */
+  padding: 20px;
+  /* display: block; */
+  height: unset;
+}
+
+
+
+
+
+
+/* (C) CART */
+#poscart {
+  padding: 10px;
+  background: #ebe8e8;
+}
+
+.citem > * { 
+  box-sizing: border-box; 
+  
+}
+.citem  { width: 100%; }
+.citem { 
+  padding: 10px; 
+  border: solid 3px rgba(16, 16, 16, 0.1);
+  margin: 5px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: khaki;
+
+}
+/* .cname{ display: block; } */
+.cdel { width: 25%; }
+.cqty { width: 75%; }
+
+
+
+#ctotal { font-weight: 700; padding: 10px; }
+.cdel, .cqty, #cempty, #ccheckout { padding: 10px; }
+.cdel, #cempty, #ccheckout {
+  background: #9a2121;
+  border: 1px solid #9a2121;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+#cempty, #ccheckout { margin: 5px; }
+
+/* (D) RECEIPT */
+#posreceipt { display: none; }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    
+    <script src="./script.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="inner">
+          <div class="logo">
+              <div>
+                  <img src="assets/logo.png" alt="MU restaurant">
+              </div>
+          </div>
+          <nav>
+              <!-- <li><span><a href="">About</a></span></li>
+              <li><span><a href="">Work</a></span></li>
+              <li><span><a href="">History</a></span></li> -->
+              <li><span><a href="" class="button">Logout</a></span></li>
+          </nav>
+      </div>
+  </header>
+
+    <div class="content">
+      <div id="bill">
+
+        <%if (Receipts.length > 0) { %>
+        // Do something with more than 1 recipe
+        <h1>HEllo Wolrd</h1>
+        <% } %>
+      </div>
+      
+
+      <div id="poscart">
+        <!-- document.URL -->
+      <%listReceipt.forEach(Receipt => {%>
+        <input class="citem" type="button" value="Đơn hàng <%= Receipt.id %>"  onclick="document.location.href= + './receipt/<%= Receipt._id %>';">
+        </input>
+        <%})%>
+      </div>
+
+      <div id="posreceipt"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+
+    <script>
+    //   function getReceipt(id) {
+    //     $.ajax({
+    //       url: 'http://localhost:3000/receipt/' + id,
+    //       type: 'GET',
+    //       dataType: 'json',
+    //       success: function(data) {
+    //         console.log(data);
+    //         $('#posreceipt').html(data.html);
+    //       }
+    //     });
+    //   }
+      var Bills = {
+  draw : function () {
+    var wrapper = document.getElementById("poscart");
+
+    fetch("data.json")
+    .then(response => response.json())
+    .then(bills => {
+      for(let pid in bills){
+        // console.log(bills[pid])
+        let pdt = document.createElement("input"), p = bills[pid];
+        
+        pdt.className = "citem";
+        pdt.dataset.pid = pid;
+        pdt.setAttribute("type", "button");
+        pdt.setAttribute("value", `Đơn hàng ${p.id}`);
+        pdt.onclick = function() { content_bill(p); };
+        wrapper.appendChild(pdt);
+      }
+
+    });
+  }
+};
+window.addEventListener("DOMContentLoaded", Bills.draw);
+
+function total_cost(b){
+  var total = 0
+  // console.log(b.bill);
+  for(cnt in b.bill){
+    // console.log(item)
+    item = b.bill[cnt]
+    total += item.quantity * item.price
+  }
+  return numberWithCommas(total)
+}
+
+function numberWithCommas(x) {
+  var parts = x.toString().split(".");
+  parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,".");
+  return parts.join(",");
+}
+
+function content_bill(bill){
+  console.log(bill);
+  b = document.getElementById("bill")
+  // console.log(b.innerHTML)
+    // if(b == null){
+  //   b = document.createElement("div")
+  //   b.id = "bill"
+  // }
+  // while (b.lastElementChild) {
+  //   b.removeChild(b.lastElementChild);
+  // }
+  b.innerHTML = ""
+  segment = document.createElement("h1")
+  segment.innerHTML = `Hóa đơn ${bill.id}`
+  b.appendChild(segment)
+
+  segment = document.createElement("p")
+  segment.innerHTML = `Thời gian: ${bill.time}`
+  b.appendChild(segment)
+
+  // Table siêu khó
+  table = document.createElement("table")
+  table.className = "table"
+  thead = document.createElement("thead")
+
+  tr = document.createElement("tr")
+
+  th = document.createElement("th")
+  th.scope = "col"
+  th.innerHTML = "#"
+  tr.appendChild(th)
+
+  th = document.createElement("th")
+  th.scope = "col"
+  th.innerHTML = "Món ăn"
+  tr.appendChild(th)
+
+  th = document.createElement("th")
+  th.scope = "col"
+  th.innerHTML = "Giá"
+  tr.appendChild(th)
+
+  th = document.createElement("th")
+  th.scope = "col"
+  th.innerHTML = "Số lượng"
+  tr.appendChild(th)
+
+  th = document.createElement("th")
+  th.scope = "col"
+  th.innerHTML = "Số tiền"
+  tr.appendChild(th)
+
+  thead.appendChild(tr)
+  table.appendChild(thead)
+
+  tbody = document.createElement("tbody");
+
+  //for loops
+  for(cnt in bill.bill){
+    item = bill.bill[cnt]
+    tr = document.createElement("tr")
+    
+    th = document.createElement("th")
+    th.scope = "row"
+    th.innerHTML = `${cnt}`
+    tr.appendChild(th)
+
+    td = document.createElement("td")
+    td.innerHTML = `${item.name}`
+    tr.appendChild(td)
+
+    td = document.createElement("td")
+    td.innerHTML = `${numberWithCommas(item.price)}`
+    tr.appendChild(td)
+
+    td = document.createElement("td")
+    td.innerHTML = `${item.quantity}`
+    tr.appendChild(td)
+
+    td = document.createElement("td")
+    td.innerHTML = `${numberWithCommas(item.price * item.quantity)}`
+    tr.appendChild(td)
+
+    tbody.appendChild(tr)
+  }
+
+
+  table.appendChild(tbody)
+  b.appendChild(table)
+
+
+  segment = document.createElement("div")
+  segment.innerHTML = `Tổng tiền: ${total_cost(bill)} VND`
+  segment.className = "ctotal";
+  segment.id = "ctotal";
+  b.appendChild(segment)
+
+  segment = document.createElement("input")
+  segment.setAttribute("type", "button");
+  segment.setAttribute("value", "Xác nhận");
+  segment.id = "cempty"
+  segment.onclick = function() { content_bill(p); };
+  b.appendChild(segment)
+
+  segment = document.createElement("input")
+  segment.setAttribute("type", "button");
+  segment.setAttribute("value", "In");
+  segment.id = "ccheckout"
+  segment.onclick = function() { print_bill(); };
+  b.appendChild(segment)
+
+  hr = document.createElement("hr")
+  b.appendChild(hr)
+
+}
+
+function print_bill(){
+  // Xem  lại cái nút
+  var b = document.getElementById("bill")
+  var printwin = window.open();
+  printwin.document.write(b.innerHTML);
+  printwin.stop();
+  printwin.print();
+  printwin.close();
+}
+
+function delete_bill(bill){
+  // how to delete a file or update complete from false to true
+  console.log("Hello World")
+}
+
+    </script>
+  </body>
+</html>
+
+

@@ -8,7 +8,7 @@ var Bills = {
       for(let pid in bills){
         // console.log(bills[pid])
         let pdt = document.createElement("input"), p = bills[pid];
-  
+        
         pdt.className = "citem";
         pdt.dataset.pid = pid;
         pdt.setAttribute("type", "button");
@@ -40,6 +40,7 @@ function numberWithCommas(x) {
 }
 
 function content_bill(bill){
+  console.log(bill);
   b = document.getElementById("bill")
   // console.log(b.innerHTML)
     // if(b == null){
@@ -151,7 +152,6 @@ function content_bill(bill){
 
   hr = document.createElement("hr")
   b.appendChild(hr)
-
 }
 
 function print_bill(){

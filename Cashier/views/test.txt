@@ -1,0 +1,33 @@
+    <!-- <%if(Receipt !== null){ %>
+    <h1> Hóa đơn <%= Receipt.id %>  </h1>
+    <p>Thời gian: <%= Receipt.date %></p>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Món ăn</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Số tiền</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%Receipt.listOrder.forEach(Order => {%>
+            <tr>
+            <td><%= Order.name %></td>
+            <td><%= Order.price %></td>
+            <td><%= Order.total %></td>
+            <td><%= Order.price * Order.total %></td>
+            </tr>
+            <%})%>
+        </tbody>
+    </table>
+
+    <div class="ctotal" id="ctotal">Tổng tiền: <%= Receipt.totalCost %> VND</div>
+    <form method="PUT" action="/cashier/receipt/<%= item._id %>">
+        <input type="button" value="Xác nhận" id="cempty">
+    </form>
+    
+    <input type="button" value="In" id="ccheckout">
+    <%})%> -->
+
+
