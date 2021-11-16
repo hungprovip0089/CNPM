@@ -8,8 +8,26 @@ module.exports.Food = class {
     }
 }
 
-module.exports.Server = class{
+module.exports.Server = class {
     static async createServer(server){
         return await model.createServer(server);
+    }
+}
+
+module.exports.Order = class {
+    static async createOrder(order){
+        return model.createOrder(order);
+    }
+}
+
+module.exports.Request = class {
+    static async createRequest(request){
+        return model.createRequest(request);
+    }
+}
+
+module.exports.Receipt = class {
+    static async createReceipt(receipt){
+        return model.createReceipt(receipt);
     }
 }

@@ -15,5 +15,4 @@ window.onclick=  event => {
         console.log('Off');
         modal.style.display = "none";
     }
-    
 }

@@ -1,29 +1,36 @@
 head 
-    link(rel="stylesheet", href="../../static/css/customer/dashboard.css")
+    script(src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous')
+    script(src="/scripts/jquery.min.js") 
+    script(src="/scripts/customer/menu.js") 
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel="stylesheet", href="/css/customer/dashboard.css")
 body
 
     .header 
         a(href="/")
-            img.logo(src="/static/images/logo.png",width="100px")  
+            img.logo(src="/images/logo.png",width="100px")  
         a(href='/')
             p Back to home
-    
+        div.button-area
+            button.call-service-btn CALL SERVICE 
+            button.payment-btn PAY
+
     .filter
         ul 
             li
-                a(href="/customer")
+                a(href="/customer/" + tableId)
                     button All 
             li
-                form(action="/customer/search",method="GET")
+                form(action="/customer/" + tableId + "/search",method="GET")
                     input(type="text",value="Chicken", name="filter")
                     button(tabindex="1")
-                        img(src="/static/images/birthday.png",width="80%")
+                        img(src="/images/birthday.png",width="80%")
                         p Chicken
             li 
-                form(action="/customer/search",method="GET")
+                form(action="/customer/" + tableId + "/search",method="GET")
                     input(type="text",value="Beef", name="filter")
                     button(tabindex="1")
-                        img(src="/static/images/meat.png",width="80%")
+                        img(src="/images/meat.png",width="80%")
                         p Beef 
     h3.nameType #{type}
     .container       
@@ -37,120 +44,52 @@ body
                             .product-info
                                 .h5 #{food.name}
                                 .h6 #{food.price}
-                            button.addToCart Add
+                                    span 
+                                        img(src="/images/shopping-cart.png")
+                                .h6 #{food.description}
+                                .h6 #{food.type}
+                                    
 
         section.cart 
             h3 Your cart
             ul.cart-list 
-
-
-<!-- Cart of item -->
-    //- .hcart-container.animate
-    //-     .hcart-header
-    //-         ul 
-    //-             li
-    //-             li
-    //-             li Sản phẩm
-    //-             li Giá
-    //-             li Số lượng
-    //-             li Tổng
-    //-     .hcart-content
-    //-             .hproduct-card
-    //-                 ul 
-    //-                     li 
-    //-                         span.x-item &times 
-    //-                     li 
-    //-                         .hproduct-image 
-    //-                             img(src="/static/images/blackCoffee.jpg")
-    //-                     li  
-    //-                         .hproduct-name Hello 
-    //-                     li  $99.99
-    //-                     li  1
-    //-                     li  $99.99
-    //-             .hproduct-card
-    //-                 ul 
-    //-                     li 
-    //-                         span.x-item &times 
-    //-                     li 
-    //-                         .hproduct-image 
-    //-                             img(src="/static/images/blackCoffee.jpg")
-    //-                     li  
-    //-                         .hproduct-name Hello 
-    //-                     li  $99.99
-    //-                     li  1
-    //-                     li  $99.99
-    //-             .hproduct-card
-    //-                 ul 
-    //-                     li 
-    //-                         span.x-item &times 
-    //-                     li 
-    //-                         .hproduct-image 
-    //-                             img(src="/static/images/blackCoffee.jpg")
-    //-                     li  
-    //-                         .hproduct-name Hello 
-    //-                     li  $99.99
-    //-                     li  1
-    //-                     li  $99.99
-    //-             .hproduct-card
-    //-                 ul 
-    //-                     li 
-    //-                         span.x-item &times 
-    //-                     li 
-    //-                         .hproduct-image 
-    //-                             img(src="/static/images/blackCoffee.jpg")
-    //-                     li  
-    //-                         .hproduct-name Hello 
-    //-                     li  $99.99
-    //-                     li  1
-    //-                     li  $99.99
-    //-             .hproduct-card
-    //-                 ul 
-    //-                     li 
-    //-                         span.x-item &times 
-    //-                     li 
-    //-                         .hproduct-image 
-    //-                             img(src="/static/images/blackCoffee.jpg")
-    //-                     li  
-    //-                         .hproduct-name Hello 
-    //-                     li  $99.99
-    //-                     li  1
-    //-                     li  $99.99
-    //-             .hproduct-card
-    //-                 ul 
-    //-                     li 
-    //-                         span.x-item &times 
-    //-                     li 
-    //-                         .hproduct-image 
-    //-                             img(src="/static/images/blackCoffee.jpg")
-    //-                     li  
-    //-                         .hproduct-name Hello 
-    //-                     li  $99.99
-    //-                     li  1
-    //-                     li  $99.99
-    //-             .hproduct-card
-    //-                 ul 
-    //-                     li 
-    //-                         span.x-item &times 
-    //-                     li 
-    //-                         .hproduct-image 
-    //-                             img(src="/static/images/blackCoffee.jpg")
-    //-                     li  
-    //-                         .hproduct-name Hello 
-    //-                     li  $99.99
-    //-                     li  1
-    //-                     li  $99.99
-            
-
-    //-     .hcard-footer
-    //-         span Tổng tiền #99999                   
-                            
-
-    //-     button.order-btn Order
+            .total-box
+                div 
+                    span#total-label Total 
+                    span#total-value 0
+                    
+                div 
+                    span#tax-startlabel (tax 10% - 
+                    span#tax-value 0
+                    span#tax-startlabel )
+                button#send-order-btn SEND ORDER 
+    
+    .detail-box
+        h3 ADD TO CART
+            span.cancel &times;
+        .detail-info(product_id="FOOD01")
+            .detail-image
+                img(width="100px")
+            div.detail-text
+                div
+                    span Name 
+                    span Unit price
+                div
+                    span.name Hamburger
+                    span.price 120000
+                div 
+                    span Quantity
+                    span
+                        button.minus &minus;
+                        span.quantity 1
+                        button.plus &plus;
+                div Description
+                .description Hello
+                br
+                div Type 
+                .type Chicken
+                button.addToCart ADD 
 
 
 
-
-
-
-    script(src="../../static/scripts/jquery.min.js") 
-    script(src="../../static/scripts/customer/menu.js") 
+    

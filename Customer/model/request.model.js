@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var requestSchema = new mongoose.Schema({
     id : String,
-    status: bool,
+    status: Boolean,
     type: String,
     fromTableId: String
 });
