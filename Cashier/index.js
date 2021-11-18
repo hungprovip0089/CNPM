@@ -51,6 +51,7 @@ var listReceipt;
 
 Receipt.find({status: false}, function(err, data) {
     listReceipt = data;
+    console.log(listReceipt)
 });
 
 // Cashier have their id for hello <name> or we can use together
@@ -90,8 +91,14 @@ app.get('/cashier/update/:id', function(req,res){
 });
 
 
+app.get('/cashier/print/:id',function(req,res) {
+    var printWin = window.open();
+    printWin.document.write();
+    printWin.stop();
+    printWin.print();
+    printWin.close();
+});
+
 app.listen(port, function(){
     console.log('Welcome to port '+ port);
 });
-
-

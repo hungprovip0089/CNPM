@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="/public/bootstrap.min.css">
     
     <script type = "commonjs" src="./index.js"></script>
-    <script src="/script.js"></script>
     <title>Cashier</title>
   </head>
   <body>
@@ -56,16 +55,28 @@
             <%})%>
           </tbody>
         </table>
-
+      
       
       <div class="ctotal" id="ctotal">Tổng tiền: <%= Receipts.totalCost %> VND</div>
       
       <form method="GET" action="/cashier/update/<%= Receipts._id %>" >
         <input type="submit" value="Xác nhận" id="cempty">
       </form>
-      <form id="print">
-        <input type="button" value="In" id="ccheckout">
+
+     <form>
+      <input type="button" value="In" id="ccheckout" onclick = Print()>
       </form>
+      
+      <script>
+        function Print() {
+          var b = document.getElementById("bill");
+          var printWin = window.open();
+          printWin.document.write(b.innerHTML);
+          printWin.stop();
+          printWin.print();
+          printWin.close();
+        }
+      </script>
         
       
 
