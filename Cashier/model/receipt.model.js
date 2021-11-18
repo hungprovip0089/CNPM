@@ -2,8 +2,12 @@ var mongoose = require('mongoose');
 
 var receiptSchema = new mongoose.Schema({
     id : String,
-    date: Date,
-    listOrder: [],
+    time: Date,
+    listOrder: [{
+        name: String,
+        quantity: Number,
+        price: Number,
+    }],
     totalCost: Number,
     paymentMethod: String,
     status: Boolean,

@@ -1,6 +1,7 @@
 // npm install nodemon express express-handlebars method-override body-parser cookie-parser dotenv jquery lowdb mongoose mongoose-type-url pug shortid url ejs
 
-require('dotenv').config();
+
+require("dotenv").config();
 var cookieParser = require('cookie-parser');
 const { response } = require("express");
 var express = require("express");
@@ -21,9 +22,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
 
 // #############################################################################
+
 
 mongoose.connect('mongodb://localhost/restaurant');
 let db = mongoose.connection;
@@ -46,24 +48,12 @@ let Receipt = require('./model/receipt.model'); // receipts -> the last (s)
 
 cnt = 0;
 
-// app.get('/cashier/:id', function(req, res, next){
-//     Article.find({_id: req.params.id}, (err, cashiers) => {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             res.render('index', {
-//                 name: cashiers[0].name //Hello someone
-//             });
-//         }
-//     });
-//     res.redirect('/');
-// });
+
 
 Receipt.find({status: false}, function(err, data) {
-    listReceipt = data
+    listReceipt = data;
+    console.log(listReceipt);
 });
-
-
 
 // Cashier have their id for hello <name> or we can use together
 app.get('/cashier', function(req,res){
@@ -73,55 +63,41 @@ app.get('/cashier', function(req,res){
     // res.send("Hello World")
     res.render('index',{
         listReceipt: listReceipt, //The left space is empty
-        Receipts: []
+        Receipts: [],
     })    
 });
 
-
-
-
 app.get('/cashier/:id', function(req,res){
-    // console.log(req.params.id);
-    // console.log("yasbdifbasihdfbuisdb");
-    // _id: req.params.id
-    // Receipt.find({}, (err, receipts) => {
-    //     if (err) {
-    //         console.log(err);
-    //     }
-    // })
-    // Receipt.find({_id: req.params.id}, (err, receipts) => {
-    //     if (err) {
-    //         console.log("yasbdifbasihdfbuisdb");
-    //         console.log(err);
-    //     } else {
-    //         // console.log(receipt[0].id);
-    //         res.render('index',{
-    //             name: 'Tuấn',
-    //             listReceipt: listReceipt,
-    //             Receipts: receipts[0] //a ele not array
-    //         })
-    //     }
-    // });
-    
-    res.render('receipt_index',{
-        listReceipt: listReceipt, //The left space is empty
-        Receipts: []
-    }) 
-    // res.send("Hello World")
+    Receipt.find({_id: req.params.id}, (err, receipts) => {
+    if (err) {
+        console.log("yasbdifbasihdfbuisdb");
+        console.log(err);
+    } else {
+      
+
+        res.render('index',{
+            date: receipts[0].time,
+            listReceipt: listReceipt,
+            Receipts: receipts[0].listOrder //a ele not array
+        })
+    }
+    });
+
 });
 
 // Update the status of receipt
+
 app.put('/cashier/receipt/:id', function(req,res){
     Receipt.findByIdAndUpdate(req.params.id, {status: true}, function(err, receipt){
         if(err) return handleError(err);
     });
+
     res.redirect('/cashier/');
 });
-
-
-
 
 
 app.listen(port, function(){
     console.log('Welcome to port '+ port);
 });
+
+
