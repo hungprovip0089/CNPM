@@ -143,11 +143,14 @@ header nav .button:hover{
   background-color: khaki;
 
 }
-/* .cname{ display: block; } */
+
 .cdel { width: 25%; }
 .cqty { width: 75%; }
 
-
+form {
+  display: flex;
+  flex-direction: column;
+}
 
 #ctotal { font-weight: 700; padding: 10px; }
 .cdel, .cqty, #cempty, #ccheckout { padding: 10px; }

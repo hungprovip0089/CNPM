@@ -13,7 +13,7 @@
     
     <script type = "commonjs" src="./index.js"></script>
     <script src="/script.js"></script>
-    <title>Document</title>
+    <title>Cashier</title>
   </head>
   <body>
     <header>
@@ -24,9 +24,6 @@
               </div>
           </div>
           <nav>
-              <!-- <li><span><a href="">About</a></span></li>
-              <li><span><a href="">Work</a></span></li>
-              <li><span><a href="">History</a></span></li> -->
               <li><span><a href="" class="button">Logout</a></span></li>
           </nav>
       </div>
@@ -35,12 +32,11 @@
     <div class="content">
       <div id="bill">
 
-        <%if (Receipts.length > 0) { %>
-        // Do something with more than 1 recipe
-        <h1>HEllo Wolrd</h1>
-        <h5>Thời gian: <%= date %> </h5>
+        <%receipts.forEach(Receipts => {%>
+        <h1>Hóa đơn <%= Receipts.id %></h1>
+        <p>Thời gian: <%= Receipts.time %> </p>
 
-        <table>
+        <table class="table"> 
           <thead>
           <tr>
               <th scope="col">Món ăn</th>
@@ -50,25 +46,30 @@
           </tr>
           </thead>
           <tbody>
-          <%Receipts.forEach(Order => {%>
+            <%Receipts.listOrder.forEach(Order => {%>
               <tr>
               <td><%= Order.name %></td>
               <td><%= Order.price %></td>
               <td><%= Order.quantity %></td>
               <td><%= Order.price * Order.quantity %></td>
               </tr>
-              <%})%>
+            <%})%>
           </tbody>
+        </table>
 
-          
-      </table>
       
-      <li><span><a id = "ConfirmButton" class="button">Confirm</a></span></li>
-
-      <li><span><a class="button">Print</a></span></li>
+      <div class="ctotal" id="ctotal">Tổng tiền: <%= Receipts.totalCost %> VND</div>
+      
+      <form method="GET" action="/cashier/update/<%= Receipts._id %>" >
+        <input type="submit" value="Xác nhận" id="cempty">
+      </form>
+      <form id="print">
+        <input type="button" value="In" id="ccheckout">
+      </form>
+        
       
 
-        <% } %>
+        <% }) %>
 
         
       </div>
@@ -77,7 +78,7 @@
       <div id="poscart">
 
       <%listReceipt.forEach(Receipt => {%>
-        <input class="citem" type="button" value="Đơn hàng <%= Receipt.id %>"  onclick="document.location.href= './cashier/<%= Receipt._id %>'; cnt++;">
+        <input class="citem" type="button" value="Đơn hàng <%= Receipt.id %>"  onclick="document.location.href= '/cashier/<%= Receipt._id %>'; cnt++;">
         </input>
         <%})%>
       </div>

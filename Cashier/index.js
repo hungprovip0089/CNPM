@@ -46,39 +46,30 @@ db.on('error', console.error.bind(console, 'connection error:'));
 let Receipt = require('./model/receipt.model'); // receipts -> the last (s)
 // let Cashier = require('./model/cashier.model');
 
-cnt = 0;
 
-
+var listReceipt;
 
 Receipt.find({status: false}, function(err, data) {
     listReceipt = data;
-    console.log(listReceipt);
 });
 
 // Cashier have their id for hello <name> or we can use together
 app.get('/cashier', function(req,res){
-    // console.log(listReceipt);
-    console.log("Hello World");
-    console.log(cnt);
-    // res.send("Hello World")
+
     res.render('index',{
         listReceipt: listReceipt, //The left space is empty
-        Receipts: [],
+        receipts: [],
     })    
 });
 
 app.get('/cashier/:id', function(req,res){
     Receipt.find({_id: req.params.id}, (err, receipts) => {
     if (err) {
-        console.log("yasbdifbasihdfbuisdb");
         console.log(err);
     } else {
-      
-
         res.render('index',{
-            date: receipts[0].time,
             listReceipt: listReceipt,
-            Receipts: receipts[0].listOrder //a ele not array
+            receipts: receipts //a ele not array
         })
     }
     });
@@ -87,11 +78,14 @@ app.get('/cashier/:id', function(req,res){
 
 // Update the status of receipt
 
-app.put('/cashier/receipt/:id', function(req,res){
-    Receipt.findByIdAndUpdate(req.params.id, {status: true}, function(err, receipt){
+app.get('/cashier/update/:id', function(req,res){
+    console.log(req.params.id);
+    Receipt.findByIdAndUpdate({_id: req.params.id}, {status: true}, function(err, receipt){
         if(err) return handleError(err);
     });
-
+    Receipt.find({status: false}, function(err, data) {
+        listReceipt = data;
+    });
     res.redirect('/cashier/');
 });
 
