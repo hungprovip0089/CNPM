@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="/public/bootstrap.min.css">
+    
+    <script type = "commonjs" src="./index.js"></script>
+    <title>Server</title>
+  </head>
+  <body>
+    <header>
+      <div class="inner">
+          <div class="logo">
+              <div>
+                  <img src="/logo.png" alt="MU restaurant">
+              </div>
+          </div>
+          <nav>
+              <li><span><a href="" class="button">Logout</a></span></li>
+          </nav>
+      </div>
+  </header>
+
+    <div class="content">
+      <div id="request">
+        <%if (requests.length > 0) { %>
+          <%requests.forEach(Requests => {%>
+            <h1>Request <%= Requests.id %></h1>
+            
+            <table class="table"> 
+              <thead>
+              <tr>
+                  <th scope="col">Người gửi</th>
+                  <th scope="col">Bàn</th>
+              </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                  <td><%= Requests.typ %></td>
+                  <td><%= Requests.tableId %></td>
+                  </tr>
+              </tbody>
+            </table>
+
+            
+          
+            <form method="GET" action="/server/request/update/<%= Requests._id %>" >
+              <input type="submit" value="Xác nhận" id="cempty">
+            </form>
+          
+            <script>
+              function Print() {
+                var b = document.getElementById("bill");
+                var printWin = window.open();
+                printWin.document.write(b.innerHTML);
+                printWin.stop();
+                printWin.print();
+                printWin.close();
+              }
+              function updateTable(){}
+            </script>
+          
+          <% }) %>
+        <% } %>
+
+        <% if (tables.length > 0) { %>
+          <%tables.forEach(Tables => {%>
+            <h1>Table <%= Tables.id %></h1>
+            
+            <table class="table"> 
+              <thead>
+              <tr>
+                  <th scope="col">Khu vực</th>
+                  <th scope="col">Số lượng tối đa</th>
+                  <th scope="col">Tình trạng</th>
+              </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                  <td><%= Tables.areaId %></td>
+                  <td><%= Tables.maxGuest %></td>
+                  
+                  <td><%if(Tables.status) {%>
+                      <%= "Trống" %>
+                    <%} else {%>
+                      <%= "Đầy" %>
+                    <%}%>
+                  </td>
+                  </tr>
+              </tbody>
+            </table>
+    
+            
+          
+            <form method="GET" action="/server/table/update/<%= Tables._id %>" onclick = updateTable()>
+              <input type="submit" value="Cập nhật" id="cempty">
+            </form>
+
+            <script>
+              function updateTable() {
+                if(Tables.status){
+
+                }
+              }
+            </script>
+
+          <% }) %>
+        <% } %>
+        
+      </div>
+
+      
+
+      <div id="poscart">
+        <%listRequest.forEach(Request => {%>
+          <input class="citem" type="button" value="Request <%= Request.id %>"  onclick="document.location.href= '/server/request/<%= Request._id %>'; cnt++;">
+          </input>
+        <%})%>
+      </div>
+
+      <div id="poscart2">
+        <%listTable.forEach(Table => {%>
+          <% if(Table.status){ %>
+            <input class="citem1" type="button" value="Table <%= Table.id %>"  onclick="document.location.href= '/server/table/<%= Table._id %>'; cnt++;">
+            </input>
+          <% } else{ %>
+            <input class="citem2" type="button" value="Table <%= Table.id %>"  onclick="document.location.href= '/server/table/<%= Table._id %>'; cnt++;">
+            </input>
+          <% } %>
+        <%})%>
+      </div>
+
+      
+
+      
+
+ 
+
+      <div id="posreceipt"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  </body>
+</html>
+
