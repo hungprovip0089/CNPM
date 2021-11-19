@@ -124,16 +124,14 @@ app.get('/server/table/update/:id', async function(req,res){
             if(err) return handleError(err);
         });
     }   */
-    var table = await Table.findById({_id: req.params.id})
+    var table = await Table.findById({_id: req.params.id});
     
     Table.findByIdAndUpdate({_id: req.params.id}, {status: !table.status}, function(err, table){
         if(err) return handleError(err);
         console.log(table);
     });
 
-    Table.find({}, function(err,data) {
-        listTable = data;
-    });
+    listTable = await Table.find();
 
     
     res.redirect('/server/');
