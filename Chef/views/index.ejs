@@ -1,0 +1,72 @@
+<div class="row flex-lg-row-reverse align-items-center g-5 py-4 mb-4">
+  <div class="col-12 col-lg-6">
+    <img src="/img/chef.png" width="400" height="410" class="d-block mx-lg-auto img-fluid" loading="lazy" alt="Chef UI">
+  </div>
+  <div class="col-12 col-lg-6">
+    <h1 class="display-5 fw-bold mb-3">Xin chao, Bep Truong</h1>
+    <p class="lead">
+      Chef Interface connected with mongoDB cloud.
+    </p>
+  </div>
+</div>
+
+
+<!-- Waiting Start -->
+<section class="pb-4 pt-4">
+  <div class="d-flex mb-2 align-items-center">
+    <h2>Waiting Orders</h2>
+    <a href="/orders/waiting" class="ms-auto">View All</a>
+  </div>
+  <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+    <% if(orderList.confirmedList != '') { %>
+    <% orderList.waitingList.forEach(function(waitOrder, index){ %>
+    <a href="/orderdetailWait/<%= waitOrder._id %>" class="col text-center category__link">
+      <div class="category__img category__img--large shadow">
+        <img src="img/waiting.png" alt="<%= waitOrder.id %>" loading="lazy">
+      </div>
+      <div class="pt-1">OrderID: <%= waitOrder.id %></div>
+    </a>
+    <% }) %>
+    <% } else { %>
+    <p>No Orders Found.</p>
+    <% } %>
+  </div>
+</section>
+<!-- Waiting End -->
+
+
+<!-- Confirmed Start -->
+<section class="pb-4 pt-4">
+  <div class="d-flex mb-2 align-items-center">
+    <h2>Confirmed Orders</h2>
+    <a href="/orders/confirmed" class="ms-auto">View All</a>
+  </div>
+  <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+    <% if(orderList.confirmedList != '') { %>
+    <% orderList.confirmedList.forEach(function(confOrder, index){ %>
+    <a href="/orderdetailConf/<%= confOrder._id %>" class="col text-center category__link">
+      <div class="category__img category__img--large shadow">
+        <img src="img/confirmed.png" alt="<%= confOrder.id %>" loading="lazy">
+      </div>
+      <div class="pt-1">OrderID: <%= confOrder.id %></div>
+    </a>
+    <% }) %>
+    <% } else { %>
+    <p>No Orders Found.</p>
+    <% } %>
+  </div>
+</section>
+<!-- Confirmed End -->
+
+
+<!-- Update Menu - Start -->
+<section class="px-4 py-5 my-5 text-center">
+  <h1 class="display-5 fw-bold">Update Menu</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">...................................</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <a href="/menu" class="btn btn-primary btn-dark btn-lg">Update</a>
+    </div>
+  </div>
+</section>
+<!-- Update Menu End -->

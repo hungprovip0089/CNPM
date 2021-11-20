@@ -1,0 +1,45 @@
+<% if(detail != null ) { %>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Orders</a></li>
+    <li class="breadcrumb-item active" aria-current="page">orderID: <%- detail.id %></li>
+  </ol>
+</nav>
+<div class="row">
+  <div class="col-12 col-md-4">
+    <img src="/img/detail.png" class="img-fluid sticky-top" style="top: 20px;" alt="<%- detail.id %>" loading="lazy">
+  </div>
+  <div class="col-12 col-md-8">
+    <div class="row">
+      <div class="col-12"><h1><%- detail.id %></h1></div>
+      <div class="col-12 mb-4"><i class="bi bi-tag"></i> tableID: <%- detail.tableId %> | <%- detail.status %> </div>
+      <div class="col-12" style="white-space: pre-line;">
+        <h4>Total: </h4>
+        <%- detail.total %>
+      </div>
+    </div>
+    <div class="row pt-4">
+      <div class="col-12">
+        <h4>Items: </h4>
+        <ul class="list-group list-group-flush">
+          <% detail.cart.forEach(function(items, index){ %>
+          <li class="list-group-item"><%= items %></li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+    <form action="/doneOrder/<%- detail._id %>"  method="POST">
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Done</button>
+      </div>
+    </form>
+    
+    <div class="col-12 col-md-8">
+      <div class="row">
+        <div class="col-12"><h1> </h1></div>
+      </div>
+    </div>
+  </div>
+  <% } else { %>
+  <p>No item found.</p>
+  <% } %>

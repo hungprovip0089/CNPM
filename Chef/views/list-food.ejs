@@ -1,0 +1,29 @@
+<h1 class="pb-4">Menu</h1>
+<div class="container">
+	<div class="content">
+		<div class="content-2">
+			<div class="recent-orders">
+				<table>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Ststus</th>
+					</tr>
+					<%foodList.forEach(Food => {%>
+					<tr>
+						<td><%= Food.id %></td>
+						<td><%= Food.name %></td>
+						<td><%= Food.description %></td>
+						<td>
+							<form class="modal-content" action='/updatemenu/<%= Food._id %>' method="POST">
+								<button type="submit" class="btn btn-primary"><%= Food.status %></button>
+							</form>
+						</td>
+					</tr>
+					<%})%>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
