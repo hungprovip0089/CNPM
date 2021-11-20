@@ -39,7 +39,7 @@ var Table = require('./model/table.model');
 var listRequest;
 var listTable;
 
-Request.find({status: false}, function(err, data) {
+/*Request.find({status: false}, function(err, data) {
     if (err) {console.log(err);}
     listRequest = data;
 });
@@ -47,9 +47,11 @@ Request.find({status: false}, function(err, data) {
 Table.find({}, function(err, data) {
     if (err) {console.log(err);}
     listTable = data;
-});
+});*/
 
-app.get('/server', function(req,res){
+app.get('/server', async function(req,res){
+    listRequest = await Request.find({status: false});
+    listTable = await Table.find();
 
     res.render('index',{
         listRequest: listRequest,
@@ -79,7 +81,7 @@ app.get('/server/request/:id', function(req,res){
 });
 
 // information of each table base on table id
-app.get('/server/table/:id', function(req,res){
+app.get('/server/table/:id',async function(req,res){
     Table.find({_id: req.params.id}, (err, tables) => {
         if (err) {
             console.log(err);
@@ -96,13 +98,14 @@ app.get('/server/table/:id', function(req,res){
 });
 
 // Update the status of request
-app.get('/server/request/update/:id', function(req,res){
+app.get('/server/request/update/:id',async function(req,res){
     Request.findByIdAndUpdate({_id: req.params.id}, {status: true}, function(err, request){
         if(err) return handleError(err);
     });
-    Request.find({status: false}, function(err,data) {
-        listRequest = data;
-    });
+    //Request.find({status: false}, function(err,data) {
+    //    listRequest = data;
+    //});
+    listRequest = await Request.find({status: false});
     res.redirect('/server/');
 });
 
@@ -110,7 +113,6 @@ app.get('/server/request/update/:id', function(req,res){
 app.get('/server/table/update/:id', async function(req,res){
     
     /*let flag = true;
-
     if(true){
         Table.findByIdAndUpdate({_id: req.params.id , status: false}, {status: true}, function(err, table){
             if(err) return handleError(err);
@@ -138,7 +140,7 @@ app.get('/server/table/update/:id', async function(req,res){
 
 });
 
-
 app.listen(port, function(){
     console.log('Welcome to port '+ port);
 });
+
