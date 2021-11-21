@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const Employee = require("./employee.model.js");
 const Food = require("./food.model.js");
 const Order = require("./order.model.js");
