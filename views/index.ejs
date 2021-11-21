@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>RESTAURANT</title>
+        <link href="/css/style.css", rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap' rel='stylesheet'>
+        <script src="/scripts/jquery.min.js"></script>
+        <script src="/scripts/index.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="inner">
+                <div class="logo">
+                    <div>
+                        <a href="/">
+                            <img src="/images/logo.png">
+                        </a>
+                    </div>
+                </div>
+                <nav>
+                    <li><a href="/manager">Manager</a></li>
+                    <li><a href="/chef">Chef</a></li>
+                    <li><a href="/server">Server</a></li>
+                    <li><a href="/cashier">Cashier</a></li>
+                    <li><button style="height: 50%; margin-top: 25%; border: 0; border-radius: 5px;"class="button" onclick=logOut()>Login</button></li>
+                </nav>
+            </div>
+        </header>
+        <div id="login-form" class="modal animate">
+            <div class="close-btn">
+                <span>&times;</span>
+            </div>
+            <form class="modal-content" action="/" method="POST">
+                <div class="img-container">
+                    <img class="img-avatar" src="/images/img_avatar.png">
+                </div>
+                <div class="container">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" placeholder="username" required>
+                    <label for="pwd">Password</label> 
+                    <input type="password" name="pwd" placeholder="password" required)>
+                    <button>Login</button> 
+                    <label>Remember me</label> 
+                    <input type="checkbox" name="remember" checked="checked"> 
+                </div>
+                <div class="container">
+                    <button class="cancel-btn">Cancel</button>
+                    <span class="psw">
+                        Forgot
+                        <a href="#">Password?</a>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <main>
+            <img style="height: 450px" src="\images\i-like-food.svg">
+        </main>
+
+    </body>
+</html>

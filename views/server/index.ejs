@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/server/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <title>Server</title>
+  </head>
+  <body>
+    <header>
+      <div class="inner">
+          <div class="logo">
+              <div>
+                  <img src="/images/logo.png" alt="MU restaurant">
+              </div>
+          </div>
+          <nav>
+              <button style="margin-top: 25%; border: 0; border-radius: 5px;"class="button" onclick=logOut()>LogOut</button>
+          </nav>
+      </div>
+  </header>
+
+    <div class="content">
+      <div id="request">
+        <%if (requests.length > 0) { %>
+          <%requests.forEach(Requests => {%>
+            <h1>Request <%= Requests.id %></h1>
+            
+            <table class="table"> 
+              <thead>
+              <tr>
+                  <th scope="col">Sender</th>
+                  <th scope="col">Table</th>
+              </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                  <td><%= Requests.type %></td>
+                  <td><%= Requests.fromTableId %></td>
+                  </tr>
+              </tbody>
+            </table>
+            
+          
+            <form method="GET" action="/server/request/update/<%= Requests.id %>" >
+              <input type="submit" value="Confirm" id="cempty">
+            </form>
+          
+            <script>
+              function Print() {
+                var b = document.getElementById("bill");
+                var printWin = window.open();
+                printWin.document.write(b.innerHTML);
+                printWin.stop();
+                printWin.print();
+                printWin.close();
+              }
+              function updateTable(){}
+              
+            </script>
+          
+          <% }) %>
+        <% } %>
+
+        <% if (tables.length > 0) { %>
+          <%tables.forEach(Tables => {%>
+            <h1>Table <%= Tables.id %></h1>
+            
+            <table class="table"> 
+              <thead>
+              <tr>
+                  <th scope="col">Area</th>
+                  <th scope="col">Maximum Guest</th>
+                  <th scope="col">Status</th>
+              </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                  <td><%= Tables.areaId %></td>
+                  <td><%= Tables.maxGuest %></td>
+                  
+                  <td><%if(Tables.status) {%>
+                      <%= "Empty" %>
+                    <%} else {%>
+                      <%= "Full" %>
+                    <%}%>
+                  </td>
+                  </tr>
+              </tbody>
+            </table>
+    
+            
+          
+            <form method="GET" action="/server/table/update/<%= Tables.id %>" onclick = updateTable()>
+              <input type="submit" value="Cập nhật" id="cempty">
+            </form>
+            <script>
+              function updateTable() {
+                if(Tables.status){
+                }
+              }
+            </script>
+          <% }) %>
+        <% } %>
+        
+      </div>
+
+      
+
+      <div id="poscart">
+        <%listRequest.forEach(Request => {%>
+          <input class="citem" type="button" value="Request <%= Request.id %>"  onclick="document.location.href= '/server/request/<%= Request.id %>'; cnt++;">
+          </input>
+        <%})%>
+      </div>
+
+      <div id="poscart2">
+        <%listTable.forEach(Table => {%>
+          <% if(Table.status){ %>
+            <input class="citem1" type="button" value="Table <%= Table.id %>"  onclick="document.location.href= '/server/table/<%= Table.id %>'; cnt++;">
+            </input>
+          <% } else{ %>
+            <input class="citem2" type="button" value="Table <%= Table.id %>"  onclick="document.location.href= '/server/table/<%= Table.id %>'; cnt++;">
+            </input>
+          <% } %>
+        <%})%>
+      </div>
+
+      <div id="posreceipt"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      function logOut(){
+        document.cookie = 'userID' + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;";
+        window.location = '/';
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Manage Employee</title>
+        <link href="/css/manager/manageEmployee.css" rel="stylesheet">
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <script src="/scripts/jquery.min.js"></script>
+        <script src="/scripts/manager/createEmployee.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="inner">
+                <div class="logo">
+                    <div>
+                        <a href="/manager"><img src="/images/logo.png"></a>     
+                    </div>
+                </div>
+                <nav>
+                  <li><a href="/manager/manageEmployee">Manage Employee</a></li>
+                  <li><a href="/manager/manageFood">Manage Food</a></li>
+                  <li><a href="/manager/manageTable">Manage Table</a></li>
+                  <li><span><button  style="border: 0; border-radius: 5px;" class="button" onclick=logOut()>Logout</button></span></li>      
+                </nav>
+            </div>
+        </header>
+        <div class="create-form">
+            <form action='/manager/manageEmployee' method="POST">
+                <div class="container">
+                    <img class="close-button" src="/images/close-button.png">
+                    <h1>Employee Form</h1>
+                    <p>Please fill out the form</p>
+                    <hr>
+                    <label for='name'></label>
+                    <b>Full name</b>
+                    <input type='text' placeholder='Full name' name='name'>
+                    <label for='type'></label>
+                    <div class="type">
+                        <b>Position</b>
+                        <select name="type">
+                            <option value="server">Server</option>
+                            <option value="chef">Chef</option>
+                            <option value="cashier">Cashier</option>
+                        </select>
+                    </div>
+                    <br>
+                    <label for="username"></label>
+                    <b>Username</b>
+                    <input type='text' name='username' placeholder='Username'>
+                    <label for='pwd'></label>
+                    <b>Password</b>
+                    <input type='text' name='pwd' placeholder='Password'>
+                </div>
+
+                <div class="clearfix">
+                    <button class="signupbtn" type="submit">Create</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="container-main">
+            <h1>Manage Employee</h1>
+            <div class="action-selection">
+                <button id="createEmployee">Create Employee</button>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>username</th>
+                        <th>password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%employees.forEach(employee => {%>
+                        <tr>
+                            <td><%= employee.id %></td>
+                            <td><%= employee.name %></td>
+                            <td><%= employee.type %></td>
+                            <td><%= employee.username %></td>
+                            <td><%= employee.pwd %></td>
+                        </tr>
+                    <%})%>
+                </tbody>
+            </table>
+        </div>
+        <script>
+            function logOut(){
+              document.cookie = 'userID' + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;";
+              window.location = '/';
+            }
+        </script>
+        
+    </body>
+    
+
+</html>

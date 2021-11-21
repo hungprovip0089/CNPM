@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof title != 'undefined' ? title: 'Chef - Team 3' %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;500&display=swap" rel="stylesheet">
+    <link href="/css/chef/style.css", rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container-xxl px-md-5 bg-white shadow-lg">
+      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a href="/chef" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+          <img src="/images/CSE Logo.png" width="229" height="68" alt="Cooking Blog - Made with Node.js">
+        </a>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/chef" class="nav-link px-2 link-secondary">Orders</a></li>
+          <li><a href="/chef/menu" class="nav-link px-2 link-secondary">Update Menu</a></li>
+        </ul>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button onclick=logOut() class="btn btn-outline-secondary btn-lg px-4 me-md-2">LogOut</button>
+        </div>
+      </header>
+      <main>
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-4 mb-4">
+            <div class="col-12 col-lg-6">
+              <img src="/images/chef.png" width="400" height="410" class="d-block mx-lg-auto img-fluid" loading="lazy" alt="Chef UI">
+            </div>
+            <div class="col-12 col-lg-6">
+              <h1 class="display-5 fw-bold mb-3">Xin chao, Bep Truong</h1>
+              <p class="lead">
+                Chef Interface connected with mongoDB cloud.
+              </p>
+            </div>
+          </div>
+          
+          
+          <!-- Waiting Start -->
+          <section class="pb-4 pt-4">
+            <div class="d-flex mb-2 align-items-center">
+              <h2>Waiting Orders</h2>
+              <a href="/chef/orders/waiting" class="ms-auto">View All</a>
+            </div>
+            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+              <% if(orderList.waitingList != '') { %>
+              <% orderList.waitingList.forEach(function(waitOrder, index){ %>
+              <a href="/chef/orderdetailWait/<%= waitOrder.id %>" class="col text-center category__link">
+                <div class="category__img category__img--large shadow">
+                  <img src="/images/waiting.png" alt="<%= waitOrder.id %>" loading="lazy">
+                </div>
+                <div class="pt-1">OrderID: <%= waitOrder.id %></div>
+              </a>
+              <% }) %>
+              <% } else { %>
+              <p>No Orders Found.</p>
+              <% } %>
+            </div>
+          </section>
+          <!-- Waiting End -->
+          
+          
+          <!-- Confirmed Start -->
+          <section class="pb-4 pt-4">
+            <div class="d-flex mb-2 align-items-center">
+              <h2>Confirmed Orders</h2>
+              <a href="/chef/orders/confirmed" class="ms-auto">View All</a>
+            </div>
+            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+              <% if(orderList.confirmedList != '') { %>
+              <% orderList.confirmedList.forEach(function(confOrder, index){ %>
+              <a href="/chef/orderdetailConf/<%= confOrder.id %>" class="col text-center category__link">
+                <div class="category__img category__img--large shadow">
+                  <img src="/images/confirmed.png" alt="<%= confOrder.id %>" loading="lazy">
+                </div>
+                <div class="pt-1">OrderID: <%= confOrder.id %></div>
+              </a>
+              <% }) %>
+              <% } else { %>
+              <p>No Orders Found.</p>
+              <% } %>
+            </div>
+          </section>
+          <!-- Confirmed End -->
+          
+          
+          <!-- Update Menu - Start -->
+          <section class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold">Update Menu</h1>
+            <div class="col-lg-6 mx-auto">
+              <p class="lead mb-4">...................................</p>
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="/chef/menu" class="btn btn-primary btn-dark btn-lg">Update</a>
+              </div>
+            </div>
+          </section>
+          <!-- Update Menu End -->
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script>
+      function logOut(){
+        document.cookie = 'userID' + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;";
+        window.location = '/';
+      }
+    </script>
+  </body>
+</html>

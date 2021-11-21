@@ -1,0 +1,192 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  h1{
+    font-weight: bold;
+  }
+  header{
+    width: 100%;
+    height: 100px;
+    border-bottom: solid 1px rgba(16, 16, 16, 0.1);
+    font-family: 'Poppins';
+    /* background-color: wheat; */
+  }
+  
+  header .inner{
+    width: 80%; /* This is the inner width of the content inside of your header (80%, etc) */
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  header .logo{
+    display: table;
+    height: 100%;
+    float: left;
+  }
+  
+  header .logo div{
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  header .logo img{
+    height: 50px;
+    margin-top: 5px; /* Optical alignment of the logo */
+  }
+  
+  header nav{
+    float: right;
+    height: 100%;
+  }
+  
+  header nav li{
+    display: table;
+    height: 100%;
+    float: left;
+    margin-right: 30px;
+  }
+  
+  header nav li:last-of-type{
+    margin-right: 0;
+  }
+  
+  header nav span {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  header nav a{
+    color: #101010;
+    text-decoration: none;
+  }
+  
+  header nav .button{
+    background-color: #1ab26b; /* This HEX is the color of the button */
+    color: #FFF;
+    padding: 10px 20px;
+    border-radius: 4px;
+  }
+  
+  header nav .button:hover{
+    filter: brightness(1.05);
+  }
+  
+  
+  
+  /* (A) WRAPPER */
+  .content {
+    font-family: arial, sans-serif;
+    display: grid;
+    grid-template-columns: 60% 20% 20%;
+    /* display: flex; */
+    /* justify-content: center; */
+    max-width: 1000px;
+    margin: 0 auto;
+    /* width: 1300px; */
+  }
+  
+  
+  #poslist { width: 100%; }
+  #poscart { width: 100%; }
+  #poscart2 { width: 100%; }
+  
+  /* (B) PRODUCTS LIST */
+  /* #poslist {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+  .pwrap {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #fbfbfb;
+    cursor: pointer;
+    text-align: center;
+  }
+  .pimg { max-width: 100px; }
+  .pname { font-weight: 700; }
+  .pprice { color: #639aff; } */
+  
+  #request{
+    /* background-color: rgb(247, 245, 242); */
+    padding: 20px;
+    /* display: block; */
+    height: unset;
+  }
+  
+  
+  
+  
+  
+  
+  /* (C) CART */
+  #poscart {
+    padding: 10px;
+    background: #ebe8e8;
+  }
+  
+  #poscart2 {
+    padding: 10px;
+    background: #555252;
+  }
+  
+  .citem, .citem1, .citem2 > * { 
+    box-sizing: border-box; 
+    
+  }
+  .citem, .citem1, .citem2  { width: 100%; }
+  .citem { 
+    padding: 10px; 
+    border: solid 3px rgba(16, 16, 16, 0.1);
+    margin: 5px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: khaki;
+  
+  }
+  .citem1 { 
+    padding: 10px; 
+    border: solid 3px rgba(16, 16, 16, 0.1);
+    margin: 5px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgb(75, 226, 95);
+  
+  }
+  .citem2 { 
+    padding: 10px; 
+    border: solid 3px rgba(16, 16, 16, 0.1);
+    margin: 5px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgb(245, 62, 49);
+  
+  }
+  
+  .cdel { width: 25%; }
+  .cqty { width: 75%; }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #ctotal { font-weight: 700; padding: 10px; }
+  .cdel, .cqty, #cempty, #ccheckout { padding: 10px; }
+  .cdel, #cempty, #ccheckout {
+    background: #9a2121;
+    border: 1px solid #9a2121;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  
+  
+  #cempty, #ccheckout { margin: 5px; }
+  
+  /* (D) RECEIPT */
+  #posreceipt { display: none; }

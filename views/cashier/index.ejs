@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/cashier/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <title>Cashier</title>
+  </head>
+  <body>
+    <header>
+      <div class="inner">
+          <div class="logo">
+              <div>
+                  <img src="/images/logo.png" alt="MU restaurant">
+              </div>
+          </div>
+          <nav>
+            <button style="margin-top: 25%; border: 0; border-radius: 5px;"class="button" onclick=logOut()>LogOut</button>
+          </nav>
+      </div>
+  </header>
+
+    <div class="content">
+      <div id="bill">
+
+        <%receipts.forEach(Receipts => {%>
+        <h1>Hóa đơn <%= Receipts.id %></h1>
+        <p>Thời gian: <%= Receipts.date %> </p>
+        <table class="table"> 
+          <thead>
+          <tr>
+              <th scope="col">Món ăn</th>
+              <th scope="col">Giá</th>
+              <th scope="col">Số lượng</th>
+              <th scope="col">Số tiền</th>
+          </tr>
+          </thead>
+          <tbody>
+            <%Receipts.listOrder.forEach(item => {%>
+              <tr>
+              <td><%= item.name %></td>
+              <td><%= item.price %></td>
+              <td><%= item.itemsNumber %></td>
+              <td><%= item.price * item.itemsNumber %></td>
+              </tr>
+            <%})%>
+          </tbody>
+        </table>
+      
+      
+      <div class="ctotal" id="ctotal">Tổng tiền: <%= Receipts.totalCost %> VND</div>
+      
+      <form method="GET" action="/cashier/update/<%= Receipts.id %>" >
+        <input type="submit" value="Xác nhận" id="cempty">
+      </form>
+     <form>
+      <input type="button" value="In" id="ccheckout" onclick = Print()>
+      </form>
+      
+      <script>
+        function Print() {
+          var b = document.getElementById("bill");
+          var printWin = window.open();
+          printWin.document.write(b.innerHTML);
+          printWin.stop();
+          printWin.print();
+          printWin.close();
+        }
+        function logOut(){
+          console.log(document.cookie);
+        }
+      </script>
+        
+        <% }) %>
+
+        
+      </div>
+      
+
+      <div id="poscart">
+
+      <%listReceipt.forEach(Receipt => {%>
+        <input class="citem" type="button" value="Đơn hàng <%= Receipt.id %>"  onclick="document.location.href= '/cashier/<%= Receipt.id %>'; cnt++;">
+        </input>
+        <%})%>
+      </div>
+
+      <div id="posreceipt"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      function logOut(){
+        document.cookie = 'userID' + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;";
+        window.location = '/';
+      }
+    </script>
+  </body>
+</html>
